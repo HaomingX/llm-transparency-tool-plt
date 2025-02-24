@@ -22,7 +22,7 @@ for outer_dir in "$outer_target_dir"/llama2*; do
 
                 echo "processing $checkpoint_name..."
 
-                python run.py --model_path "$full_checkpoint_dir" --model_name "meta-llama/llama-2-7b-hf" --output_dir "./output/${checkpoint_name}.json" 
+                python run.py --model_path "$full_checkpoint_dir" --model_name "meta-llama/llama-2-7b-hf" --dataset_path "path to your dataset" --save_path "./output/${checkpoint_name}.json" 
             else
                 if [ "$full_checkpoint_dir" == "${outer_dir}/*"-full ]; then
                     echo "No '-full' directories found in $outer_dir"
