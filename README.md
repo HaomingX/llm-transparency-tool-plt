@@ -3,9 +3,7 @@
 </h1>
 Thanks to interpretability repository provided by Meta.
 
-Our repository retains the functionalities of the original and introduces a new convenient plotting feature using Matplotlib. Additionally, we have modified the code to support direct execution of local checkpoints. The effect is as follows:
-
-<img src="https://haoming2003.oss-cn-hangzhou.aliyuncs.com/img/ckpt-0.png" alt="ckpt-0" style="zoom: 15%;" />
+Our repository retains the functionalities of the original and introduces a new convenient plotting feature using Matplotlib. Additionally, we have modified the code to support direct execution of local checkpoints.
 
 The guide of installation and running are as follows:
 
@@ -53,7 +51,9 @@ bash plt.sh
 
 This will produce visual representations of the Knowledge Circuits based on the collected data.
 
+The effect is as follows:
 
+<img src="https://haoming2003.oss-cn-hangzhou.aliyuncs.com/img/ckpt-0.png" alt="ckpt-0" style="zoom: 15%;" />
 
 ## The demo of original github
 
