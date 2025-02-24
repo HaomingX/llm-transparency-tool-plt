@@ -15,6 +15,7 @@ import transformers
 import llm_transparency_tool.routes.graph
 from llm_transparency_tool.models.tlens_model import TransformerLensTransparentLlm
 from llm_transparency_tool.models.transparent_llm import TransparentLlm
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
 GPU = "gpu"
 CPU = "cpu"
@@ -48,6 +49,7 @@ def load_model(
     model_name: str,
     _device: str,
     _model_path: Optional[str] = None,
+    model_path = None,
     _dtype: torch.dtype = torch.float32,
     supported_model_name: Optional[str] = None,
 ) -> TransparentLlm:
@@ -57,8 +59,9 @@ def load_model(
     """
     assert _device in possible_devices()
 
-    causal_lm = None
-    tokenizer = None
+    causal_lm = model_path
+    tokenizer = AutoTokenizer.from_pretrained(model_path)
+    tokenizer.pad_token = tokenizer.eos_token
 
     tl_lm = TransformerLensTransparentLlm(
         model_name=model_name,

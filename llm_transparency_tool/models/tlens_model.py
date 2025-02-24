@@ -17,6 +17,7 @@ import streamlit as st
 
 from llm_transparency_tool.models.transparent_llm import ModelInfo, TransparentLlm
 from transformer_lens.loading_from_pretrained import MODEL_ALIASES, get_official_model_name
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
 
 @dataclass
@@ -41,6 +42,8 @@ def load_hooked_transformer(
     dtype: torch.dtype = torch.float32,
     supported_model_name: Optional[str] = None,
 ):
+    tokenizer = AutoTokenizer.from_pretrained(hf_model)
+    hf_model = AutoModelForCausalLM.from_pretrained(hf_model) 
     if supported_model_name is None:
         supported_model_name = model_name
     supported_model_name = get_official_model_name(supported_model_name)
@@ -51,6 +54,7 @@ def load_hooked_transformer(
     tlens_model = transformer_lens.HookedTransformer.from_pretrained(
         model_name,
         hf_model=hf_model,
+        tokenizer=tokenizer,
         fold_ln=False,  # Keep layer norm where it is.
         center_writing_weights=False,
         center_unembed=False,
@@ -58,7 +62,7 @@ def load_hooked_transformer(
         dtype=dtype,
     )
     tlens_model.eval()
-    return tlens_model
+    return tlens_model, hf_model
 
 
 # TODO(igortufanov): If we want to scale the app to multiple users, we need more careful
@@ -97,7 +101,8 @@ class TransformerLensTransparentLlm(TransparentLlm):
 
         self.dtype = dtype
         self.hf_tokenizer = tokenizer
-        self.hf_model = hf_model
+        self.hf_model = None
+        self.hf_model_name = hf_model
 
         # self._model = tlens_model
         self._model_name = model_name
@@ -114,13 +119,14 @@ class TransformerLensTransparentLlm(TransparentLlm):
 
     @property
     def _model(self):
-        tlens_model = load_hooked_transformer(
+        tlens_model, hf_model = load_hooked_transformer(
             self._model_name,
-            hf_model=self.hf_model,
+            hf_model=self.hf_model_name,
             tlens_device=self.device,
             dtype=self.dtype,
             supported_model_name=self._supported_model_name,
         )
+        self.hf_model = hf_model
 
         if self.hf_tokenizer is not None:
             tlens_model.set_tokenizer(self.hf_tokenizer, default_padding_side="left")
