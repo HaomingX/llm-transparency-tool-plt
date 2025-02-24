@@ -1,7 +1,7 @@
 <h1>
   <img width="500" alt="LLM Transparency Tool" src="https://github.com/facebookresearch/llm-transparency-tool/assets/1367529/795233be-5ef7-4523-8282-67486cf2e15f">
 </h1>
-Thanks to interpretability repository provided by Meta.
+Thanks to the interpretability repository provided by Meta.
 
 Our repository retains the functionalities of the original and introduces a new convenient plotting feature using Matplotlib. Additionally, we have modified the code to support direct execution of local checkpoints.
 
