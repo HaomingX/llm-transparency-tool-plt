@@ -1,10 +1,11 @@
 <h1>
   <img width="500" alt="LLM Transparency Tool" src="https://github.com/facebookresearch/llm-transparency-tool/assets/1367529/795233be-5ef7-4523-8282-67486cf2e15f">
 </h1>
+Thanks to interpretability repository provided by Meta.
 
-Thanks to the Meta official interpretability repository, our repository retains the functionalities of the original and introduces a new convenient plotting feature using Matplotlib. Additionally, we have modified the code to support direct execution of local checkpoints. The effect is as follows:
+Our repository retains the functionalities of the original and introduces a new convenient plotting feature using Matplotlib. Additionally, we have modified the code to support direct execution of local checkpoints. The effect is as follows:
 
-![ckpt-0](https://haoming2003.oss-cn-hangzhou.aliyuncs.com/img/ckpt-0.png)
+<img src="https://haoming2003.oss-cn-hangzhou.aliyuncs.com/img/ckpt-0.png" alt="ckpt-0" style="zoom: 25%;" />
 
 The guide of installation and running are as follows:
 
