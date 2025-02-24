@@ -8,9 +8,7 @@ Thanks to the Meta official interpretability repository, our repository retains 
 
 The guide of installation and running are as follows:
 
-## Installation
-
-### Local Installation
+## Local Installation
 
 
 ```bash
@@ -30,7 +28,7 @@ yarn install
 yarn build
 ```
 
-### Collect Knowledge Circuits
+## Collect Knowledge Circuits
 
 To collect Knowledge Circuits, execute the run.py script with the following command:
 
@@ -44,7 +42,7 @@ Alternatively, you can use the provided shell script:
 bash run.sh
 ```
 
-### Plot Knowledge Circuits Figures
+## Plot Knowledge Circuits Figures
 
 To generate and plot the Knowledge Circuits figures, run the following command:
 
